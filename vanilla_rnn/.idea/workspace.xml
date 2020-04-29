@@ -26,7 +26,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../2D-SLAM" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="SvnConfiguration">
@@ -43,17 +43,19 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="447" y="105" width="438" height="475" key="FileChooserDialogImpl" timestamp="1586532692996">
-      <screen x="0" y="0" width="1280" height="680" />
+    <state x="-136" y="-1938" width="438" height="475" key="FileChooserDialogImpl" timestamp="1586911733504">
+      <screen x="-1030" y="-2160" width="2560" height="1440" />
     </state>
+    <state x="-136" y="-1938" key="FileChooserDialogImpl/0.0.1280.680/-120.1080.1234.617/-1030.-2160.2560.1440@-1030.-2160.2560.1440" timestamp="1586911733504" />
     <state x="447" y="105" width="438" height="475" key="FileChooserDialogImpl/0.0.1280.680/0.1080.1234.617/-3840.0.2560.1440@0.0.1280.680" timestamp="1586532692996" />
     <state x="144" y="0" key="SettingsEditor" timestamp="1586532707611">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="144" y="0" key="SettingsEditor/0.0.1280.680/0.1080.1234.617/-3840.0.2560.1440@0.0.1280.680" timestamp="1586532707611" />
-    <state x="349" y="169" key="com.intellij.ide.util.TipDialog" timestamp="1586546689702">
-      <screen x="0" y="0" width="1280" height="680" />
+    <state x="-332" y="-1802" key="com.intellij.ide.util.TipDialog" timestamp="1586911709365">
+      <screen x="-1030" y="-2160" width="2560" height="1440" />
     </state>
+    <state x="-332" y="-1802" key="com.intellij.ide.util.TipDialog/0.0.1280.680/-120.1080.1234.617/-1030.-2160.2560.1440@-1030.-2160.2560.1440" timestamp="1586911709365" />
     <state x="349" y="169" key="com.intellij.ide.util.TipDialog/0.0.1280.680/0.1080.1234.617/-1030.-2160.2560.1440@0.0.1280.680" timestamp="1586546689702" />
     <state x="303" y="1" key="search.everywhere.popup" timestamp="1586533548097">
       <screen x="0" y="0" width="1280" height="680" />
