@@ -83,9 +83,10 @@ def plot_kmeans(data: np.ndarray, centroids: np.ndarray) -> None:
 if __name__ == "__main__":
     data = generate_data()
 
-    n_clusters = 7
+    max_clusters = 20
     n_epochs = 50
-    centroids = train_kmeans(data, n_clusters, n_epochs)
+    centroids, score = train_kmeans(data, max_clusters, n_epochs)
+    print(score)
     plot_kmeans(data, centroids)
     # clusters, likelihoods, scores, sample_likelihoods, history = train_gmm(data, n_clusters, n_epochs)
     # create_cluster_animation(data, history, scores)
