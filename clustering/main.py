@@ -91,11 +91,11 @@ def plot_dbscan(data: np.ndarray, labels: np.ndarray) -> None:
 if __name__ == "__main__":
     data = generate_data(True)
 
-    res, labels = train_dbscan(data)
-    plot_dbscan(data, labels)
+    #res, labels = train_dbscan(data)
+    #plot_dbscan(data, labels)
     # max_clusters = 20
-    # n_epochs = 50
+    n_epochs = 50
     # centroids, score = train_kmeans(data, max_clusters, n_epochs)
     # plot_kmeans(data, centroids)
-    # clusters, likelihoods, scores, sample_likelihoods, history = train_gmm(data, n_clusters, n_epochs)
-    # create_cluster_animation(data, history, scores)
+    clusters, likelihoods, scores, sample_likelihoods, history = train_gmm(data, 3, 50)
+    create_cluster_animation_gmm(data, history, scores)
