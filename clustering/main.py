@@ -7,7 +7,9 @@ import matplotlib.colors as colors
 from matplotlib.patches import Ellipse
 from gmm import train_gmm
 from kmeans import train_kmeans
+from dbscan import train_dbscan
 from scipy.spatial import KDTree
+
 
 def generate_data(iris_dataset: Optional[bool] = False) -> np.ndarray:
     if iris_dataset:
@@ -80,13 +82,20 @@ def plot_kmeans(data: np.ndarray, centroids: np.ndarray) -> None:
     plt.show()
 
 
-if __name__ == "__main__":
-    data = generate_data()
+def plot_dbscan(data: np.ndarray, labels: np.ndarray) -> None:
+    plt.scatter(data[:, 0], data[:, 1], c=labels,
+                s=50, cmap='viridis')
+    plt.show()
 
-    max_clusters = 20
-    n_epochs = 50
-    centroids, score = train_kmeans(data, max_clusters, n_epochs)
-    print(score)
-    plot_kmeans(data, centroids)
+
+if __name__ == "__main__":
+    data = generate_data(True)
+
+    res, labels = train_dbscan(data)
+    plot_dbscan(data, labels)
+    # max_clusters = 20
+    # n_epochs = 50
+    # centroids, score = train_kmeans(data, max_clusters, n_epochs)
+    # plot_kmeans(data, centroids)
     # clusters, likelihoods, scores, sample_likelihoods, history = train_gmm(data, n_clusters, n_epochs)
     # create_cluster_animation(data, history, scores)
