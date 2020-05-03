@@ -22,7 +22,8 @@ def gaussian(X: np.ndarray, mu: np.ndarray, cov: np.ndarray) -> np.ndarray:
 
 def initialize_clusters(data_: np.ndarray, num_clusters: int) -> List[Dict]:
     """
-    Rather than just randomly setting the initial parameters of the clusters we estimate them using k-means.
+    Initialize cluster parameters.
+
     :param data_: raw data
     :param num_clusters: number of desired clusters
     :return: list of initialized clusters
@@ -30,6 +31,7 @@ def initialize_clusters(data_: np.ndarray, num_clusters: int) -> List[Dict]:
 
     clusters = list()
 
+    # estimate mu_k with k-means
     kmeans = KMeans().fit(data_)
     mu_k = kmeans.cluster_centers_
 
@@ -69,7 +71,7 @@ def expectation_step(data_: np.ndarray, clusters: List[Dict]) -> None:
 
 def maximization_step(data_: np.ndarray, cluster: List[Dict]) -> None:
     """
-
+    Find the revised parameters.
     :param data_: raw data
     :param cluster: current cluster configuration
     :return:
@@ -107,7 +109,6 @@ def get_likelihood(clusters_: List[Dict]) -> Tuple[np.ndarray, np.float64]:
 def train_gmm(data_: np.ndarray, n_clusters: int, n_epochs: int, verbose: Optional[bool] = True) -> Tuple[
     List, np.ndarray, np.ndarray, np.ndarray, List]:
     """
-
     :param data_: raw data
     :param n_clusters: desired number of clusters
     :param n_epochs: number epochs to train the model
