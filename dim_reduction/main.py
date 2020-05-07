@@ -1,6 +1,8 @@
 from sklearn.preprocessing import StandardScaler
 from sklearn.datasets import load_iris
 import numpy as np
+from typing import Tuple
+import matplotlib.pyplot as plt
 
 
 def load_dataset() -> np.ndarray:
@@ -11,14 +13,15 @@ def load_dataset() -> np.ndarray:
     return X_
 
 
-def normalize_data(X: np.ndarray) -> np.ndarray:
+def center_data(X: np.ndarray) -> Tuple[np.ndarray, np.ndarray]:
     """
-    Normalize data to zero mean.
+    Center data to zero mean.
     :param X: raw data
-    :return: normalized data
+    :return: centered data
     """
-    X_normalized_ = StandardScaler().fit_transform(X)
-    return X_normalized_
+    # X_normalized_ = StandardScaler(with_std=False).fit_transform(X)
+    X_normalized_ = X - X.mean(axis=0)
+    return X_normalized_, X.mean(axis=0)
 
 
 def calc_covariance_mat(X_normalized_: np.ndarray) -> np.ndarray:
@@ -48,7 +51,8 @@ def calc_eigen_pairs(cov_mat_: np.ndarray) -> np.ndarray:
     return np.asarray(eig_pairs_)
 
 
-def reduce_dim_of_data(X_normalized_: np.ndarray, eig_pairs_: np.ndarray, threshold: float) -> np.ndarray:
+def reduce_dim_of_data(X_normalized_: np.ndarray, eig_pairs_: np.ndarray, threshold: float) -> Tuple[np.ndarray,
+                                                                                                     np.ndarray]:
     """
     :param X_normalized_: normalized data
     :param eig_pairs_: eigenvalue-eigenvector pairs of covariance matrix in descending order with respect to eigenvalue
@@ -56,17 +60,23 @@ def reduce_dim_of_data(X_normalized_: np.ndarray, eig_pairs_: np.ndarray, thresh
     :return: dimensionality reduced dataset
     """
     reduced_dim_size = np.argmax(np.cumsum(eig_pairs_[:, 0] / sum(eig_pairs_[:, 0])) > threshold) + 1
-    proj_mat = np.column_stack(eig_pairs_[:reduced_dim_size, 1])
+    proj_mat_ = np.column_stack(eig_pairs_[:reduced_dim_size, 1])
 
-    pca_data = X_normalized_.dot(proj_mat)
+    pca_data = X_normalized_.dot(proj_mat_)
 
-    return pca_data
+    return pca_data, proj_mat_
 
 
 if __name__ == "__main__":
     X = load_dataset()
-    X_normalized = normalize_data(X)
+    X_normalized, X_mean = center_data(X)
 
     cov_mat = calc_covariance_mat(X_normalized)
     eig_pairs = calc_eigen_pairs(cov_mat)
-    reduce_dim_of_data(X_normalized, eig_pairs, 0.99)
+    X_reduced, proj_mat = reduce_dim_of_data(X_normalized, eig_pairs, 0.99)
+
+    X_reconstructed = X_reduced.dot(proj_mat.T) + X_mean
+
+    plt.scatter(X[:, 0], X[:, 2])
+    plt.scatter(X_reconstructed[:, 0], X_reconstructed[:, 2])
+    plt.show()
